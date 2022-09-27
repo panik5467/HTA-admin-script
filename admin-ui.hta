@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Application Runner</title>
+    <HTA:APPLICATION ID="oMyApp"         
+        BORDER="yes"
+        CAPTION="yes"
+        SHOWINTASKBAR="yes"
+        SINGLEINSTANCE="yes"
+        SYSMENU="yes"
+        SCROLL="no"
+        WINDOWSTATE="normal">
+    <script type="text/javascript" language="javascript">
+	
+        function RunProg(command) {
+			WshShell = new ActiveXObject("WScript.Shell");
+			WshShell.Run(command, 1, false);
+        }
+    </script>
+</head>
+
+<SCRIPT LANGUAGE="VBScript">
+
+Sub Window_onLoad
+    ' resize to quarter of screen area, centered
+    window.resizeTo screen.availWidth/2,screen.availHeight/2
+    window.moveTo screen.availWidth/4,screen.availHeight/4
+End Sub 
+
+</SCRIPT>
+
+<body style="background:#555;color:white;text-align:center">
+	<H2 id="titre" ></H2>
+    <input type="button" value="Console" onclick="RunProg('cmd.exe');"/>
+    <input type="button" value="Services" onclick="RunProg('services.msc');"/>
+    <input type="button" value="Docker" onclick="RunProg('file:///C:/Program%20Files/Docker/Docker/Docker%20Desktop.exe');"/>
+    <input type="button" value="7zip" onclick="RunProg('file:///C:/Program%20Files/7-Zip/7zFM.exe');"/>
+
+<script type="text/javascript" language="javascript">
+	var wn = new ActiveXObject("WScript.Network")
+	document.getElementById("titre").innerHTML = "Launch Programs as " + wn.username
+</script>
+</body>
